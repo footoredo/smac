@@ -21,6 +21,10 @@ class MultiAgentEnv(object):
         """Returns the size of the observation."""
         raise NotImplementedError
 
+    def get_obs_shape_seq(self):
+        """Returns the size of the observation."""
+        raise NotImplementedError
+
     def get_state(self):
         """Returns the global state."""
         raise NotImplementedError
