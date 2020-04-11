@@ -1174,6 +1174,20 @@ class StarCraft2Env(MultiAgentEnv):
 
         return move_feats + enemy_feats + ally_feats + own_feats
 
+    def get_obs_shape_seq(self):
+        """
+        Returns the scheme of the observation
+        e.g. [3, (1, 2), 3]
+        hint: len / (len, n)
+        """
+        own_feats = self.get_obs_own_feats_size()
+        move_feats = self.get_obs_move_feats_size()
+
+        n_enemies, n_enemy_feats = self.get_obs_enemy_feats_size()
+        n_allies, n_ally_feats = self.get_obs_ally_feats_size()
+
+        return [move_feats, (n_enemy_feats, n_enemies), (n_ally_feats, n_allies), own_feats]
+
     def get_state_size(self):
         """Returns the size of the global state."""
         if self.obs_instead_of_state:

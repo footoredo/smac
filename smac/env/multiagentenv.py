@@ -61,6 +61,7 @@ class MultiAgentEnv(object):
     def get_env_info(self):
         env_info = {"state_shape": self.get_state_size(),
                     "obs_shape": self.get_obs_size(),
+                    "obs_shape_seq": self.get_obs_shape_seq(),
                     "n_actions": self.get_total_actions(),
                     "n_agents": self.n_agents,
                     "episode_limit": self.episode_limit}
