@@ -1186,7 +1186,14 @@ class StarCraft2Env(MultiAgentEnv):
         n_enemies, n_enemy_feats = self.get_obs_enemy_feats_size()
         n_allies, n_ally_feats = self.get_obs_ally_feats_size()
 
-        return [move_feats, (n_enemy_feats, n_enemies), (n_ally_feats, n_allies), own_feats]
+        return {
+            "observation_pattern": [move_feats, (n_enemy_feats, "enemy"), (n_ally_feats, "ally"), own_feats],
+            "action_pattern": [self.n_actions_no_attack, (1, "enemy")],
+            "objects": {
+                "enemy": n_enemies,
+                "ally": n_allies
+            }
+        }
 
     def get_state_size(self):
         """Returns the size of the global state."""
